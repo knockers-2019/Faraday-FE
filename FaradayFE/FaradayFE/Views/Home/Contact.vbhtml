@@ -2,17 +2,24 @@
     ViewData("Title") = "Contact"
 End Code
 
-<h2>@ViewData("Title").</h2>
-<h3>@ViewData("Message")</h3>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Contact informations</h1>
+        <div class="information-card top">
+            <h4><strong>Backend:</strong></h4><br />
+            <p><strong>Name:</strong> Mikkel Wexøe Ertbjerg</p><br />
+            <p><strong>Phone:</strong><i> Not available</i></p><br />
+            <p> <strong>Email:</strong> Cph-me209@cphbusiness.dk</p><br />
+        </div>
+        <div class="information-card bottom">
+            <h4><strong>Frontend:</strong></h4><br />
+            <p><strong>Name:</strong>  Jonas Manley Pederseng</p><br />
+            <p><strong>Phone:</strong><i> +45 40505889</i></p><br />
+            <p> <strong>Email:</strong> Jonasmanley@hotmail.com</p><br />
+        </div>
+    </body>
+</html>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>

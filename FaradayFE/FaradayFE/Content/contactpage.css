@@ -1,0 +1,11 @@
+﻿
+.information-card * {
+    display: inline;
+}
+.information-card p {
+    padding-left:25px;
+}
+.bottom {
+    padding-top: 25px;
+}
+

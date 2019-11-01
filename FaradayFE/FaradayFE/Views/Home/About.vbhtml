@@ -1,8 +1,12 @@
 ﻿@Code
-    ViewData("Title") = "About"
 End Code
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Description</title>
+    </head>
+    <body>
+        <h1>Description of the project itself</h1>
+        <p>.........Soon to come.........</p>
+    </body>
+</html>
 
-<h2>@ViewData("Title").</h2>
-<h3>@ViewData("Message")</h3>
-
-<p>Use this area to provide additional information.</p>
