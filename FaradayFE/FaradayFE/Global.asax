@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FaradayFE.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.vb" Inherits="FaradayFE.MvcApplication" Language="VB" %>
