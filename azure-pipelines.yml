@@ -32,14 +32,16 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-  
-- task: PublishBuildArtifacts@1
+- task: NuGetCommand@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'FaradayContractFeed'
-    publishLocation: 'Container'
-
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: '28721258-0046-4edb-8f69-067098231023'
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
+    checkLatest: true
 - task: NuGetCommand@2
   displayName: 'NuGet pack'
   inputs:
