@@ -27,7 +27,14 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+- task: DownloadPackage@1
+  inputs:
+    packageType: 'nuget'
+    feed: '/28721258-0046-4edb-8f69-067098231023'
+    view: '32a1ea68-ae32-4c8f-853d-9eb3d64c8f4d'
+    definition: 'b8f8cad9-692a-4594-b63f-38654d270a89'
+    version: '1.0.0'
+    downloadPath: '$(System.ArtifactsDirectory)'
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
