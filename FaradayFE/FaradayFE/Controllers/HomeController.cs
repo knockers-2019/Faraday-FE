@@ -26,5 +26,19 @@ namespace FaradayFE.Controllers
 
             return View();
         }
+
+        public ActionResult CancelBooking()
+        {
+            ViewBag.Message = "Cancel booking";
+
+            return View();
+        }
+
+        public ActionResult CreateBooking()
+        {
+            ViewBag.Message = "Cancel booking";
+
+            return View();
+        }
     }
 }
