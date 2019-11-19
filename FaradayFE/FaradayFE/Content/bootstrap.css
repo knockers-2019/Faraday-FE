@@ -12,6 +12,8 @@ html {
 body {
   margin: 0;
 }
+
+
 article,
 aside,
 details,
@@ -25,7 +27,7 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+    display: block;
 }
 audio,
 canvas,
@@ -6831,4 +6833,6 @@ button.close {
     display: none !important;
   }
 }
+
+
 /*# sourceMappingURL=bootstrap.css.map */

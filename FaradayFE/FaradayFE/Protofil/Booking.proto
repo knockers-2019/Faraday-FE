@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+option csharp_namespace = "Faraday_BE_gRPC";
+
+package Book;
+
+service Booking {
+	rpc StartNewBookingGRPC (EmptyRequest) returns (stream LocationObject);
+	rpc CreateCarBookingGRPC (BookingObject) returns (ConfirmReply);
+	rpc RegisterCustomerGRPC (CustomerObject) returns (ConfirmReply);
+	rpc ShowAvailableCarsGRPC (LocationObject) returns (stream CarReply);
+	rpc ShowCustomerBookingsGRPC(DriversLicenseReuqest) returns (stream BookingObject);
+	rpc CancelBooking(BookingId) returns (ConfirmReply);	
+}
+
+message LocationObject {
+	int32 Id = 1;
+	string Address = 2;
+	string Zipcode = 3;
+	string City = 4;
+	string Country = 5;
+}
+
+// 18-11-2019
+// Changed the bookingobject, so it recieves a CarId, and two LocationIds rather than actual objects.
+// PickupTime should always be the same day the booking is made. In order to avoid "future booking" conflicts, it's not possible to reserve cars.
+message BookingObject{
+	string name = 1;
+	string lastName = 2;
+	string driversLicense = 3;
+	string gender = 4;
+	int32 carId = 5;
+	int32 dropOffLocationId = 6;
+	int32 pickupLocationId = 7;
+	int32 pickupYear = 8;
+	int32 pickUpMonth = 9;
+	int32 PickUpDay = 10;
+	int32 PickUpHour = 11;
+	int32 pickUpMinute = 12;
+	int32 dropoffYear = 13;
+	int32 dropoffMonth = 14;
+	int32 dropoffDay = 15;
+	int32 dropoffHour = 16;
+	int32 dropoffMinute = 17;
+	bool IsCancelled = 18;
+}
+
+message EmptyRequest {
+	
+}
+
+//Bool confirm: to verify success
+//String reply: to deliver error message
+message ConfirmReply {
+	bool confirm = 1;
+	string reply = 2;
+}
+
+message CustomerObject {
+	string FirstName = 1;
+	string LastName = 2;
+	string Gender = 3;
+	string DriversLicense = 4;
+}
+
+message DriversLicenseReuqest{
+	string driversLicense = 1;
+}
+
+message BookingId{
+	int32 Id = 1;
+}
+
+// 18-11-19
+// Does the CarReply need the Location Atr/Id?
+// Does the CarReply need the IsAvailable Atr?
+message CarReply {
+	int32 CarId = 1;
+	int32 Doors = 2;
+	string FuelType = 3;
+	string Type = 4;
+	string LicensePlate = 5;
+	float Price = 6;
+	bool AnimalsAllowed = 7;
+	string Color = 8;
+	string Brand = 9;
+	string Model = 10;
+}
+

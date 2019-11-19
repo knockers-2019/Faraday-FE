@@ -1,14 +1,60 @@
-﻿@{
+﻿@using FaradayFE.Content;
+@using FaradayFE;
+@using FaradayFE.Protofil;
+@{
     ViewBag.Title = "Create Booking";
+
+    var carList = new DummyBackend().Carlist;
+    var placelist = new DummyBackend().Placelist;
+
+    Service service = new Service();
+    var client = service.Client;
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Description</title>
+    <link href="~/Content/createBookingpage.css" rel="stylesheet" />
 </head>
-<body>
-    <h1>Create Booking</h1>
-    <p>..........Soon to come..........</p>
+<body onload="">
+
+    <button onclick="">Create Booking</button>
+    <div class="form-container">
+        <h1>Book your dream car</h1>
+        <form>
+            <div class="city-row">
+                <div class="form-group">
+                    <span class="form-label">Select you pickup place</span>
+                    <select>
+                        @foreach (var place in placelist)
+                        {
+                            <option>@place</option>
+                            ;
+                        } CreateBooking();
+                    </select>
+                </div>
+            </div>
+
+            <div class="city-row-">
+                <div class="form-group">
+                    <span class="form-label">Select you pickup place</span>
+                    <select>
+                        @foreach (var car in carList)
+                        {
+                            <option>@car.LicensePlate</option>
+                            ;
+                        }
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>
 
+<script>
+    function myFunction() {
+        document.getElementById("form-container").style.position = block;
+    }
+</script>
