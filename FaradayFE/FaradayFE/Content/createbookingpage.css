@@ -1,6 +1,7 @@
 ﻿body {
     background-image: url('../pictures/backgroundpicture.jpg');
-    height: auto;
+    height: 2000px;
+    width:1080px;
 }
 .reservation-class {
     height: 350px;
