@@ -5,6 +5,9 @@ using System.Web;
 
 namespace FaradayFE.Content
 {
+
+    
+
     public class DummyBackend
     {
         private List<Car> carlist = new List<Car>() {
@@ -31,7 +34,7 @@ namespace FaradayFE.Content
         }
 
         public List<string> Placelist
-        {
+    {
             get { return placelist; }
             set { placelist = value; }
         }
