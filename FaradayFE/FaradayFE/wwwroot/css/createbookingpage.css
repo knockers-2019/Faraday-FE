@@ -27,7 +27,7 @@ h1 {
 .form-container {
     position: absolute;
     background: white;
-    top: 470px;
+    top: 200px;
     left: 10%;
     right: 0;
     -webkit-transform: translateY(-50%);
