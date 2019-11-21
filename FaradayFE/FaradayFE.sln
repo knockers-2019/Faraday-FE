@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaradayFE", "FaradayFE\FaradayFE.csproj", "{8029650E-AF42-4D19-A8D8-20CE521CDE95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaradayFE", "FaradayFE\FaradayFE.csproj", "{8C841B26-24C2-4CE1-AAF6-116EF810DF33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8029650E-AF42-4D19-A8D8-20CE521CDE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8029650E-AF42-4D19-A8D8-20CE521CDE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8029650E-AF42-4D19-A8D8-20CE521CDE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8029650E-AF42-4D19-A8D8-20CE521CDE95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C841B26-24C2-4CE1-AAF6-116EF810DF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C841B26-24C2-4CE1-AAF6-116EF810DF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C841B26-24C2-4CE1-AAF6-116EF810DF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C841B26-24C2-4CE1-AAF6-116EF810DF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1CD9AB49-8AB3-4AEC-99E1-6A407E61273C}
+		SolutionGuid = {CD6B8011-1772-4BCC-93EC-BDD60D9CC962}
 	EndGlobalSection
 EndGlobal
