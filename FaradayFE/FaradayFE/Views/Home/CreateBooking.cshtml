@@ -14,13 +14,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Description</title>
-    <link href="~/Content/createBookingpage.css" rel="stylesheet" />
+    <link href="~/css/createbookingpage.css" rel="stylesheet" />
 </head>
-<body onload="">
-
-    <button onclick="">Create Booking</button>
+<body>
+    <h1>Book your dream NOW!</h1>
     <div class="form-container">
-        <h1>Book your dream car</h1>
         <form>
             <div class="city-row">
                 <div class="form-group">
@@ -34,17 +32,44 @@
                     </select>
                 </div>
             </div>
-
-            <div class="city-row-">
+            <div class="pickuptime-row">
                 <div class="form-group">
-                    <span class="form-label">Select you pickup place</span>
-                    <select>
-                        @foreach (var car in carList)
-                        {
-                            <option>@car.LicensePlate</option>
-                            ;
-                        }
-                    </select>
+                    <span class="form-label">Select pickup time</span>
+                    <input type="datetime-local" name="name" value="" />
+                </div>
+            </div>
+            <div class="delivery-row">
+                <div class="form-group">
+                    <span class="form-label">Select delivery time</span>
+                    <input type="datetime-local" name="name" value="" />
+                </div>
+            </div>
+            <div class="button-row">
+                <div class="form-group">
+                    <button class="button">Show available cars</button>
+                </div>
+            </div>
+            <div class="name-row">
+                <div class="form-group">
+                    <span class="full-name">Full name</span>
+                    <input type="text" name="Name" value="" />
+                </div>
+            </div>
+            <div class="phone-row">
+                <div class="form-group">
+                    <span class="phone-number">Phone number</span>
+                    <input type="text" name="phone" value="" />
+                </div>
+            </div>
+            <div class="email-row">
+                <div class="form-group">
+                    <span class="email">Email</span>
+                    <input type="email" name="email" value="" />
+                </div>
+            </div>
+            <div class="button-row">
+                <div class="form-group">
+                    <button class="button">Book car</button>
                 </div>
             </div>
         </form>
