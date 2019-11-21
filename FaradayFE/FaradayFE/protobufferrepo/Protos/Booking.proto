@@ -131,8 +131,8 @@ message CarBooking {
 	Location drop_off_location = 3;
 	Car car = 4;
 	Customer customer = 5;
-	google.protobuf.Timestamp time_of_pick_up = 6;
-	google.protobuf.Timestamp time_of_drop_off = 7;
+	//google.protobuf.Timestamp time_of_pick_up = 6;
+	//google.protobuf.Timestamp time_of_drop_off = 7;
 	bool is_cancelled = 8;
 }
 
@@ -169,9 +169,6 @@ message CarRequestById {
 	int32 id = 1;
 }
 
-message CarReply {
-	Car car = 1;
-}
 
 //car booking
 message CreateCarBookingReqeust {
@@ -179,8 +176,8 @@ message CreateCarBookingReqeust {
 	Location drop_off_location = 2;
 	Car car = 3;
 	Customer customer = 4;
-	google.protobuf.Timestamp time_of_pick_up = 5;
-	google.protobuf.Timestamp time_of_drop_off = 6;
+	//google.protobuf.Timestamp time_of_pick_up = 5;
+	//google.protobuf.Timestamp time_of_drop_off = 6;
 	bool is_cancelled = 7;
 }
 

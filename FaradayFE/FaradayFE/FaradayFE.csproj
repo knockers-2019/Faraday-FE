@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protofile\Booking.proto" />
+    <None Remove="protobufferrepo\Protos\Booking.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,7 +14,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.10.1" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.10.1" />
     <PackageReference Include="Grpc" Version="2.25.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.25.0" />
+    <PackageReference Include="Grpc.Core" Version="2.25.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.25.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.25.0" />
     <PackageReference Include="Grpc.Tools" Version="2.25.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protofile\Booking.proto" GrpcServices="Client" />
+    <Protobuf Include="protobufferrepo\Protos\Booking.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

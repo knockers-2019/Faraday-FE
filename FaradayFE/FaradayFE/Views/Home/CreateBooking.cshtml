@@ -1,14 +1,16 @@
 ﻿@using FaradayFE.Content;
 @using FaradayFE;
-@using FaradayFE.Protofil;
 @{
     ViewBag.Title = "Create Booking";
 
     var carList = new DummyBackend().Carlist;
     var placelist = new DummyBackend().Placelist;
 
-    Service service = new Service();
-    var client = service.Client;
+    var completeBookings = new List<string>();
+
+    //Service service = new Service();
+    //var client = service.Client;completeBookings
+    string name;
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +19,16 @@
     <link href="~/css/createbookingpage.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Book your dream NOW!</h1>
+    <div class="log-container">
+        <h2>Confirmed booksings:</h2>
+        <div class="log">
+            <ul>
+               
+                    <li id="nametest"></li>
+               
+            </ul>
+        </div>
+    </div>
     <div class="form-container">
         <form>
             <div class="city-row">
@@ -49,27 +60,38 @@
                     <button class="button">Show available cars</button>
                 </div>
             </div>
+            <div class="Availalbecars-row">
+                <div class="form-group">
+                    <span class="form-label">Select a Car</span>
+                    <select>
+                        @foreach (var place in placelist)
+                        {
+                            <option>@place</option>
+                            ;
+                        } CreateBooking();
+                    </select>
+                </div>
+            </div>
             <div class="name-row">
                 <div class="form-group">
-                    <span class="full-name">Full name</span>
-                    <input type="text" name="Name" value="" />
+                    <input type="text" name="Name" id="Name" value="" placeholder="Full name" />
+                   
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <span class="phone-number">Phone number</span>
-                    <input type="text" name="phone" value="" />
+                    <input type="text" name="phone" id="phone" value="" placeholder="Phone number" />
                 </div>
             </div>
             <div class="email-row">
                 <div class="form-group">
-                    <span class="email">Email</span>
-                    <input type="email" name="email" value="" />
+                    <input type="email" name="email" value="" placeholder="Email" />
                 </div>
             </div>
             <div class="button-row">
                 <div class="form-group">
-                    <button class="button">Book car</button>
+                    <button onclick="myFunction()" class="button">Book car</button>
+                   
                 </div>
             </div>
         </form>
@@ -80,6 +102,7 @@
 
 <script>
     function myFunction() {
-        document.getElementById("form-container").style.position = block;
+        name = document.getElementById("Name").Value;
+        document.getElementById("nametest").innerText = name;
     }
 </script>

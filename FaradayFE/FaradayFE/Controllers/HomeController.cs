@@ -43,7 +43,7 @@ namespace FaradayFE.Controllers
 
         public IActionResult CreateBooking()
         {
-            ViewBag.Message = "Cancel booking";
+            ViewBag.Message = "create booking";
             return View();
         }
 
