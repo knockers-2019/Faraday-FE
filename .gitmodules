@@ -1,0 +1,3 @@
+[submodule "protobufferrepo"]
+	path = protobufferrepo
+	url = https://github.com/NikoDyring/protobufferrepo.git
