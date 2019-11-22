@@ -39,7 +39,7 @@
                     <span class="form-label">Select you pickup place</span>
                     <select>
 
-                        @using (var requestAllCustomers = bookingClient.ShowAvailableCarsGRPC())
+                        @*@using (var requestAllCustomers = bookingClient.ShowAvailableCarsGRPC())
                         {
 
                             while (await requestAllCustomers.ResponseStream.MoveNext())
@@ -47,14 +47,14 @@
                                 customer = requestAllCustomers.ResponseStream.Current;
                                 Console.Write($"ID: {customer.Id}, FN: {customer.FirstName}, LN: {customer.LastName}, SEX: {customer.Gender}, DL: {customer.DriversLicense}");
                             }
-                        }
+                        }*@
 
 
-                        @foreach (var place in service.Client.ShowAvailableCarsGRPC())
+                        @*@foreach (var place in service.Client.ShowAvailableCarsGRPC())
                         {
                             <option>@place</option>
                             ;
-                        } CreateBooking();
+                        } CreateBooking();*@
                     </select>
                 </div>
             </div>
