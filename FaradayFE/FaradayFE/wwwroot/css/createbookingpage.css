@@ -1,12 +1,12 @@
 ﻿body {
-    background-image: url(../Pictures/BackgroundPicture.jpg);
-    height: auto;
+    background: url(../Pictures/BackgroundPicture.jpg) no-repeat;
+    background-size: cover;
 }
 h1 {
     position: absolute;
-    right: 15%;
+    right: 11%;
     top: 25%;
-    font-size: 76px;
+    font-size: 48px;
     font-family:'Times New Roman', Times, serif;
 }
 
@@ -26,9 +26,10 @@ h1 {
 
 .form-container {
     position: absolute;
-    background: white;
-    top: 470px;
-    left: 10%;
+    background-color: aliceblue;
+    opacity: 0.85; 
+    top: 360px;
+    left: 6%;
     right: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -50,6 +51,7 @@ h1 {
 .form-group * {
     display: block;
     margin-left: 0px;
+    color: black;
 }
 
 .form-group select {
@@ -64,9 +66,39 @@ h1 {
     position: absolute;
     right: 20px;
     margin-top: -5px;
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 7px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
 }
 
+.Availalbecars-row{
+    margin-top: 40px;
+}
 
 .name-row {
-    margin-top: 70px;
+    margin-top: 30px;
+}
+
+.log-container {
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+}
+.log-container h2{
+    color: white;
+}
+.log {
+    height: 150px;
+    width: 325px;
+    background: white;
+    background-color: aliceblue;
+    opacity: 0.85;
+    border: solid 2px black;
+    border-radius: 4%;
 }
