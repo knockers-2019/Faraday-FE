@@ -1,4 +1,4 @@
-﻿using Faraday_BE_gRPC;
+﻿using FaradayGrpcServer;
 using Grpc.Core;
 using Grpc.Net.Client;
 using System;
@@ -11,17 +11,17 @@ namespace FaradayFE.protobufferrepo
     public class Service
     {
 
-        private Booking.BookingClient client;
+        private Bookings.BookingsClient client;
         public Service()
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            var bookingClient = new Booking.BookingClient(channel);
+            var bookingClient = new Bookings.BookingsClient(channel);
         }
 
         /// <summary>
         /// Property to use the Proto methods. 
         /// </summary>
-        public Booking.BookingClient Client
+        public Bookings.BookingsClient Client
         {
             get { return client; }
             set { client = value; }
