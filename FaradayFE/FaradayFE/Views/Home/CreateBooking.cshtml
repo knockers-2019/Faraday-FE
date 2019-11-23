@@ -39,7 +39,7 @@
                     <span class="form-label">Select you pickup place</span>
                     <select>
 
-                        @*@using (var requestAllCustomers = bookingClient.ShowAvailableCarsGRPC())
+                        @*@using (var requestAllCustomers = bookingClient.())
                         {
 
                             while (await requestAllCustomers.ResponseStream.MoveNext())
