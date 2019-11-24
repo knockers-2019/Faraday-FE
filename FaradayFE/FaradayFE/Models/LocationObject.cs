@@ -27,8 +27,6 @@ namespace FaradayFE.Models
             this.Country = Country;
         }
 
-        private int myVar;
-
         public int getId
         {
             get { return Id; }

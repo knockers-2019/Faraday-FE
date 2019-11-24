@@ -1,19 +1,25 @@
-﻿@using FaradayFE.Content;
-@using FaradayFE;
+﻿@using FaradayFE.Content
 @using FaradayFE.protobufferrepo
+@using FaradayGrpcServer
+@using FaradayFE.Controllers
 @{
-    ViewBag.Title = "Create Booking";
+    ViewBag.Title = "Create Booking"; // title of the site.
 
-    var carList = new DummyBackend().Carlist;
-    var placelist = new DummyBackend().Placelist;
+    var locationListDTO = (List<string>)ViewData["location"];  //Getting the data through the controller.
 
-    var completeBookings = new List<string>();
 
-    var bookingClient = new Service().Client;
+    //    void selectedMethod()
+    //    {
+    //        HomeController homeController = new HomeController();
+    //        homeController.setSelectedCar(strUser.to)
 
-    //Service service = new Service();
-    //var client = service.Client;completeBookings
-    string name;
+    //}
+
+
+    var carListDTO = new List<CarModel>();  //Getting the data through the controller.
+
+    string dateInput = "";
+    string selectedCar = "";
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,76 +27,59 @@
     <title>Description</title>
     <link href="~/css/createbookingpage.css" rel="stylesheet" />
 </head>
-<body>
+<body asp-area="" asp-controller="Home" asp-action="CreateBooking2">
     <div class="log-container">
+
         <h2>Confirmed booksings:</h2>
         <div class="log">
             <ul>
-               
-                    <li id="nametest"></li>
-               
+                <li id="nametest"></li>
             </ul>
         </div>
     </div>
     <div class="form-container">
-        <form>
+        @*@using (Html.BeginForm("SelectedCar", "Home", new { clubid = @Viewbag. }, FormMethod.Post, null)))
+        {*@
+        <form action="getCustomerDetails" method="post">
             <div class="city-row">
                 <div class="form-group">
                     <span class="form-label">Select you pickup place</span>
                     <select>
-
-                        @*@using (var requestAllCustomers = bookingClient.())
-                        {
-
-                            while (await requestAllCustomers.ResponseStream.MoveNext())
+                        @foreach (var location in locationListDTO)
                             {
-                                customer = requestAllCustomers.ResponseStream.Current;
-                                Console.Write($"ID: {customer.Id}, FN: {customer.FirstName}, LN: {customer.LastName}, SEX: {customer.Gender}, DL: {customer.DriversLicense}");
+                                <option>@location</option>
+;
                             }
-                        }*@
-
-
-                        @*@foreach (var place in service.Client.ShowAvailableCarsGRPC())
-                        {
-                            <option>@place</option>
-                            ;
-                        } CreateBooking();*@
                     </select>
-                </div>
-            </div>
-            <div class="pickuptime-row">
-                <div class="form-group">
-                    <span class="form-label">Select pickup time</span>
-                    <input type="datetime-local" name="name" value="" />
                 </div>
             </div>
             <div class="delivery-row">
                 <div class="form-group">
                     <span class="form-label">Select delivery time</span>
-                    <input type="datetime-local" name="name" value="" />
+                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" />
                 </div>
             </div>
-            <div class="button-row">
+            @*<div class="button-row">
                 <div class="form-group">
-                    <button class="button">Show available cars</button>
+                    <button  class="button">REGISTER</button>
                 </div>
-            </div>
+            </div>*@
+
             <div class="Availalbecars-row">
                 <div class="form-group">
                     <span class="form-label">Select a Car</span>
-                    <select>
-                        @foreach (var place in placelist)
+                    <select id="carList" name="carList">
+                        @foreach (var place in await HomeController.GetCarModels())
                         {
-                            <option>@place</option>
-                            ;
-                        } CreateBooking();
+                            <option value="@place.Brand">@place.Brand</option>
+;
+                        }
                     </select>
                 </div>
             </div>
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="Name" id="Name" value="" placeholder="Full name" />
-                   
+                    <input type="text" name="name" id="name" value="" placeholder="Full name" />
                 </div>
             </div>
             <div class="phone-row">
@@ -100,13 +89,12 @@
             </div>
             <div class="email-row">
                 <div class="form-group">
-                    <input type="email" name="email" value="" placeholder="Email" />
+                    <input type="email" name="email" id="email" value="" placeholder="Email" />
                 </div>
             </div>
             <div class="button-row">
                 <div class="form-group">
-                    <button onclick="myFunction()" class="button">Book car</button>
-                   
+                    <button onclick="selectedItem()" type="submit" class="button">Book car</button>
                 </div>
             </div>
         </form>
@@ -119,5 +107,11 @@
     function myFunction() {
         name = document.getElementById("Name").Value;
         document.getElementById("nametest").innerText = name;
+    }
+
+    function selectedItem() {
+        var selectedCarList = document.getElementById("carList");
+        var strUser = selectedCarList.options[selectedCarList.selectedIndex].value;
+        document.getElementById("nametest").innerText = strUser;
     }
 </script>
