@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FaradayFE.Models;
+using FaradayGrpcServer;
 
 namespace FaradayFE.Content
 {
@@ -18,10 +20,21 @@ namespace FaradayFE.Content
             "Roskilde", "København", "Farum", "Gundsømagle"
         };
 
+        private List<Booking> bookingList = new List<Booking>()
+        {
+            new Booking(new Car("1", "BY89234", Car.CarType.C), "Brian", "01/12/2019"),
+            new Booking(new Car("65", "BX23424", Car.CarType.B), "Charlotte", "05/01/2020")
+        };
 
         public DummyBackend()
         {
 
+        }
+
+        public List<Booking> Bookinglist
+        {
+            get { return bookingList; }
+            set { bookingList = value; }
         }
 
         public List<Car> Carlist
