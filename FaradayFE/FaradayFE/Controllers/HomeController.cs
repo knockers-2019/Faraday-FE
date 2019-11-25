@@ -139,7 +139,7 @@ namespace FaradayFE.Controllers
             return new EmptyResult();
         }
 
-        public async Task<IActionResult> CancelBooking()
+        public async Task<IActionResult> Bookings()
         {
             ViewBag.Message = "Cancel booking";
             Service service = new Service();
