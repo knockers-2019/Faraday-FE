@@ -58,8 +58,10 @@ h1 {
     width: 100%;
     margin-bottom: 10px !important;
 }
-
-.city-row{
+.city-pcikup-row{
+    margin-top: 30px;
+}
+.city-row {
     margin-top: 20px;
 }
 .button {
@@ -83,6 +85,9 @@ h1 {
 
 .name-row {
     margin-top: 30px;
+}
+.customer-details{
+    text-align: center;
 }
 
 .log-container {

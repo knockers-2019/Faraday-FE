@@ -10,11 +10,12 @@ service Bookings {
 	rpc CreateBookingModel (BookingModel) returns (BookingId);
 	rpc GetAllBookingModels (EmptyRequest) returns (stream BookingModel);
 	rpc GetCustomerBookingModels (CustomerModel) returns (stream BookingModel);
-	rpc CancelBookingModel (BookingModel) returns (AffactedRows);
+	rpc CancelBookingModel (BookingModel) returns (AffectedRows);
 	//Cars
 	rpc GetCarModel (CarId) returns (CarModel);
 	rpc CreateCarModel (CarModel) returns (CarId);
 	rpc GetAllCarModels (EmptyRequest) returns (stream CarModel);
+	rpc GetAllAvailableCarModelsAtLocation (LocationModel) returns (stream CarModel);
 	//Customers
 	rpc GetCustomerModel (CustomerId) returns (CustomerModel);
 	rpc CreateCustomerModel (CustomerModel) returns (CustomerId);
@@ -91,6 +92,6 @@ message EmptyRequest {
 
 }
 
-message AffactedRows{
-	int32 affacted_rows = 1;
+message AffectedRows{
+	int32 affected_rows = 1;
 }
