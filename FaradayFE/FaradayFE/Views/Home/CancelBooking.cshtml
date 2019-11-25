@@ -5,6 +5,7 @@
     var bookingListDTO = (List<BookingModel>)ViewData["booking"];  //Getting the data through the controller.
 
 
+
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,17 +20,51 @@
         <input type="text" id="myInput" placeholder="Search for booking">
         <span onclick="newElement()" class="searchBtn">Search</span>
     </div>
-    <form action="CancelSelectedBooking">
-        <ul id="showBookingUL" class="myUL">
+    <form action="getSelectedCancelBooking" method="post">
+        <select name="selectedCancelBooking">
+            @foreach (var booking in bookingListDTO)
+            {
+                <option>Booking ref. @booking.Id  car rented: @booking.Car.Brand by: @booking.Customer.FirstName pickedup at: @booking.PickupLocation.City the: @booking.PickupDate</option>
+                ;
+            }*
+        </select>
+        @*<ul id="list" class="myUL">
             @foreach (var booking in bookingListDTO)
             {
                 <li>@booking.Car.Price  @booking.Customer.FirstName</li>
             }
-        </ul>
+        </ul>*@
+    <button type="submit" class="button">Cancel</button>
     </form>
 
 
     <script type="text/javascript" src="~/js/cancelbooking.js"></script>
+    
+    @*<script>
+        var items = document.querySelectorAll("#list li"), tab = [], index;
+        var selectedItemValue;
+
+        // add values to the array
+        for (var i = 0; i < items.length; i++) {
+            tab.push(items[i].innerHTML);
+        }
+
+        // get selected element index
+        for (var i = 0; i < items.length; i++) {
+            items[i].onclick = function () {
+
+                selectedItemValue = this.innerHTML;
+                console.log(this.innerHTML);
+            };
+        }
+
+        
+        @using FaradayGrpcServer
+        @using FaradayFE.Controllers
+        @{
+         HomeController.test = selectedItemValue;
+        }
+    </script>*@
 
 </body>
 </html>
