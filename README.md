@@ -28,7 +28,7 @@ You will have different options within the navigations bar, which will give you 
 
 
 
-<h2>Usage</h2>
+<h2>Setup</h2>
 Unforturenatly we didn't find a way to host our gRPC server, which means that for the time beein, you will have to run it on your LocalHost. 
 
   1. Download the [Faraday Backend _FaradayBE_ project](https://github.com/knockers-2019/Faraday-BE)    
