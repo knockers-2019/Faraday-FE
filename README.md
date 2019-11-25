@@ -29,20 +29,6 @@ You will have different options within the navigations bar, which will give you 
 
 
 <h2>Installation</h2>
-Unforturenatly we didn't find a way to host our gRPC server, which means that for the time beein, you will have to run it on your LocalHost. 
+We have hosted the client and server, which for you means that you just have to click this [Link](https://faradayproject1754374552.azurewebsites.net/Home) to get started. 
 
-  1. Download the [Faraday Backend _FaradayBE_ project](https://github.com/knockers-2019/Faraday-BE)    
-  2. Follow the setup for the Backend [guide for FaradaBE projekt](https://github.com/knockers-2019/Faraday-BE/blob/master/README.md)  
-  
-Now to get the clientClone the projekt to gituhb desktop or use gitbash _(your choice)_
-
-  3. Download the [Faraday Frontend _FaradayFE_ project](https://github.com/knockers-2019/Faraday-FE)
-  4. Rebuild the solution so you get all the nessersary nugget-packages (check in nugget manager):
-  * Google.Protobuf
-  * Grpc.Net.Client (Given it's a .net client)
-  * Grpc.Tools
-
-  5. Run the Server. 
-  6. Run the client.
-  7. Play around with the application
 
