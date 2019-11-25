@@ -78,17 +78,17 @@
 
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="firstname" value="" placeholder="Firstname" pattern="[a-zA-Z]/>
+                    <input type="text" name="firstname" value="" placeholder="Firstname" pattern="[a-zA-Z]*"/>
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <input type="text" name="lastname" value="" placeholder="Lastname" required />
+                    <input type="text" name="lastname" value="" placeholder="Lastname" pattern="[a-zA-Z]*"/>
                 </div>
             </div>
             <div class="driverlicens-row">
                 <div class="form-group">
-                    <input type="text" name="driverlicens" value="" placeholder="driverlicens" required minlength="8" maxlength="12" />
+                    <input type="text" name="driverlicens" value="" placeholder="driverlicens" pattern="[1-9]*" required minlength="8" maxlength="12" />
                 </div>
             </div>
             <div class="gender-row">
