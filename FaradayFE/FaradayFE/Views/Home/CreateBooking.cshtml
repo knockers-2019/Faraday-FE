@@ -60,7 +60,7 @@
             <div class="delivery-row">
                 <div class="form-group">
                     <span class="form-label">Select delivery time</span>
-                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" required />
+                    <input type="date" name="selectedDate" id="selectedDate" value="" required min="" />
                 </div>
             </div>
             <div class="Availalbecars-row">
@@ -78,12 +78,12 @@
 
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="firstname" value="" placeholder="Firstname" pattern="[a-zA-Z]*"/>
+                    <input type="text" name="firstname" value="" placeholder="Firstname" required pattern="[a-zA-Z]*"/>
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <input type="text" name="lastname" value="" placeholder="Lastname" pattern="[a-zA-Z]*"/>
+                    <input type="text" name="lastname" value="" placeholder="Lastname" required pattern="[a-zA-Z]*"/>
                 </div>
             </div>
             <div class="driverlicens-row">
@@ -111,6 +111,19 @@
 </html>
 
 <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+     if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("selectedDate").setAttribute("min", today);
 
     function selectedItem() {
         alert("Succefully created a new book");
