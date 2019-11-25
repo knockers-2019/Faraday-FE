@@ -30,10 +30,12 @@ You will have different options within the navigations bar, which will give you 
 
 <h2>Usage</h2>
 Unforturenatly we didn't find a way to host our gRPC server, which means that for the time beein, you will have to run it on your LocalHost. 
+
   1. Download the [Faraday Backend _FaradayBE_ project](https://github.com/knockers-2019/Faraday-BE)    
   2. Follow the setup for the Backend [guide for FaradaBE projekt](https://github.com/knockers-2019/Faraday-BE/blob/master/README.md)  
   
 Now to get the clientClone the projekt to gituhb desktop or use gitbash _(your choice)_
+
   3. Download the [Faraday Frontend _FaradayFE_ project](https://github.com/knockers-2019/Faraday-FE)
   4. Rebuild the solution so you get all the nessersary nugget-packages. 
   5. Run the Server. 
