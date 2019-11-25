@@ -32,7 +32,7 @@ namespace FaradayFE.Controllers
         private static LocationModel selectedDropOffLocations;    //Used for create Booking  - Information sent from view
         private static CarModel selectedCar = new CarModel();                  //Used for create Booking  - Information sent from view
         private static CustomerModel customer;                                 //Used for create Booking  - Information sent from view
-        private static string pickupDate; 
+        private static string pickupDate;
         private static string dropOffDate;  //Used for create Booking  - Information sent from view
         private static bool isCannceled = false;
 
@@ -47,12 +47,12 @@ namespace FaradayFE.Controllers
         public async void getCustomerDetails(string selectedDate, string name, string phone, string email, string cityList, string citydropoff, string carList)
         {
             Service service = new Service();
-     
+
 
             //pickupLocations.City = cityList;
             foreach (var location in locationList)
             {
-                if(location.City == cityList)
+                if (location.City == cityList)
                 {
                     selectedPickupLocations = location;
                 }
@@ -108,48 +108,48 @@ namespace FaradayFE.Controllers
         //    string dropoff_date = 7;
         //    bool is_cancelled = 8;
         //}
-    }
 
 
 
-    //public async Task<List<string>> GetSomething214123()
-    //{
-    //    DummyBackend dummyBackend = new DummyBackend();
-    //    Service service = new Service();
 
-    //    EmptyRequest emptyRequest = new EmptyRequest();
-    //    CarModel carModel = new CarModel();
-    //    List<CarModel> carList = new List<CarModel>();
-    //    List<string> carsListDTO = new List<string>();
+        //public async Task<List<string>> GetSomething214123()
+        //{
+        //    DummyBackend dummyBackend = new DummyBackend();
+        //    Service service = new Service();
 
-    //    //var opt = element
-    //    //CarModel strDDLValue = new Select
-    //    //foreach (var item in carList
-    //    //{
-    //    //    if (item.)
-    //    //}
-    //    //    customer 
-    //    //string dropOfDate
-    //    string dropOfDate = Request.Form["selectedDate"];
-    //    string dropOfLocation = Request.Form["selectedDate"];
-    //    bool isCannceled = false;
-    //    //pickupdate 
-    //    //    pickuplocation
+        //    EmptyRequest emptyRequest = new EmptyRequest();
+        //    CarModel carModel = new CarModel();
+        //    List<CarModel> carList = new List<CarModel>();
+        //    List<string> carsListDTO = new List<string>();
 
-    //    return View();
-    //}
+        //    //var opt = element
+        //    //CarModel strDDLValue = new Select
+        //    //foreach (var item in carList
+        //    //{
+        //    //    if (item.)
+        //    //}
+        //    //    customer 
+        //    //string dropOfDate
+        //    string dropOfDate = Request.Form["selectedDate"];
+        //    string dropOfLocation = Request.Form["selectedDate"];
+        //    bool isCannceled = false;
+        //    //pickupdate 
+        //    //    pickuplocation
 
-    //private readonly ILogger<HomeController> _logger;
-    //public HomeController(ILogger<HomeController> logger)
-    //{
-    //    _logger = logger;
-    //}
+        //    return View();
+        //}
 
-    public HomeController()
+        //private readonly ILogger<HomeController> _logger;
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        public HomeController()
         {
 
         }
-     
+
 
         public IActionResult Index()
         {
@@ -162,9 +162,26 @@ namespace FaradayFE.Controllers
             return View();
         }
 
-        public IActionResult CancelBooking()
+        public async Task<IActionResult> CancelBooking()
         {
             ViewBag.Message = "Cancel booking";
+            DummyBackend dummyBackend = new DummyBackend();
+            Service service = new Service();
+            BookingModel booking = new BookingModel();
+            List<BookingModel> bookingList = new List<BookingModel>();
+            List<string> bookingListDTO = new List<string>();
+
+            using (var requestAllBookings = service.Client().GetAllBookingModels(_emptyRequest))
+            {
+                while (await requestAllBookings.ResponseStream.MoveNext())
+                {
+                    booking = requestAllBookings.ResponseStream.Current;
+                    bookingList.Add(booking);
+                    bookingListDTO.Add(booking.Car.Model);
+                }
+            }
+            ViewData["booking"] = bookingList;  //Sends the list of data to the view.
+
             return View();
         }
 
@@ -175,7 +192,7 @@ namespace FaradayFE.Controllers
         }
 
 
-       
+
         public async Task<IActionResult> CreateBooking()
         {
             DummyBackend dummyBackend = new DummyBackend();
@@ -194,7 +211,7 @@ namespace FaradayFE.Controllers
         }
 
 
-       
+
         public static async Task<List<CarModel>> GetCarModels()
         {
             DummyBackend dummyBackend = new DummyBackend();
@@ -218,5 +235,6 @@ namespace FaradayFE.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

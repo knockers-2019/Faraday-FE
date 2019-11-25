@@ -1,31 +1,36 @@
-﻿@{
+﻿@using FaradayGrpcServer
+@{
     ViewBag.Title = "Cancel Booking";
+
+    var bookingListDTO = (List<BookingModel>)ViewData["booking"];  //Getting the data through the controller.
+
+
 }
 
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="~/css/cancelbookingpage.css" rel="stylesheet" />
-    </head>
-    <body>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/cancelbookingpage.css" rel="stylesheet" />
+</head>
+<body>
 
-        <div id="myDIV" class="showBookingHeader">
-            <h2 style="margin:5px">Show Bookings</h2>
-            <input type="text" id="myInput" placeholder="Search for booking">
-            <span onclick="newElement()" class="searchBtn">Search</span>
-        </div>
-
+    <div id="myDIV" class="showBookingHeader">
+        <h2 style="margin:5px">Show Bookings</h2>
+        <input type="text" id="myInput" placeholder="Search for booking">
+        <span onclick="newElement()" class="searchBtn">Search</span>
+    </div>
+    <form action="CancelSelectedBooking">
         <ul id="showBookingUL" class="myUL">
-            <li>Toyota 10/10/2019 København</li>
-            <li>Fiat   09/02/2019 Odense</li>
-            <li>BMW    06/12/2019 Århus</li>
-            <li>Toyota 10/10/2019 København</li>
-            <li>Toyota 10/10/2019 København</li>
-            <li>Toyota 10/10/2019 København</li>
+            @foreach (var booking in bookingListDTO)
+            {
+                <li>@booking.Car.Price  @booking.Customer.FirstName</li>
+            }
         </ul>
+    </form>
 
-        <script type="text/javascript" src="~/js/cancelbooking.js"></script>
 
-    </body>
-    </html>
+    <script type="text/javascript" src="~/js/cancelbooking.js"></script>
+
+</body>
+</html>
 
