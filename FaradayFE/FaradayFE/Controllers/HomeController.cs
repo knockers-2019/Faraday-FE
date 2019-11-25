@@ -135,7 +135,8 @@ namespace FaradayFE.Controllers
                     var requestAllBookings = await service.Client().CancelBookingModelAsync(selectedBookingToCancel);
                 }
             }
-            return RedirectToAction("CancelBooking");
+            //return RedirectToAction("CancelBooking");
+            return new EmptyResult();
         }
 
         public async Task<IActionResult> CancelBooking()
