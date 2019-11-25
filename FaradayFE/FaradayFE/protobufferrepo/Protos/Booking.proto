@@ -10,6 +10,7 @@ service Bookings {
 	rpc CreateBookingModel (BookingModel) returns (BookingId);
 	rpc GetAllBookingModels (EmptyRequest) returns (stream BookingModel);
 	rpc GetCustomerBookingModels (CustomerModel) returns (stream BookingModel);
+	rpc GetAllActiveBookings (EmptyRequest) returns (stream BookingModel);
 	rpc CancelBookingModel (BookingModel) returns (AffectedRows);
 	//Cars
 	rpc GetCarModel (CarId) returns (CarModel);

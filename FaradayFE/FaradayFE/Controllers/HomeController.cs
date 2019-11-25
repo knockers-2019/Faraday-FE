@@ -45,13 +45,13 @@ namespace FaradayFE.Controllers
 
         //Hvis man laver en controller som tager variabler som input der stemmer overenst men ^^ name="" ^^ i cshtlm (viewet) kan man få det til helt 
         //automatisk at hente både input, selecteditems, li elementer - ja, faktisk alt, så længe der er angivet en name=""
-        public async void getCustomerDetails(string selectedDate, string name, string phone, string email, string cityList, string citydropoff, string carList)
-        {
+        public async Task<IActionResult> getCustomerDetails(string selectedDate, string firstname, string driverlicens,  string lastname, string gender, string cityList, string citydropoff, string carList)
+         {
             Service service = new Service();
             
             foreach (var location in locationList)
             {
-                if (location.City == cityList)
+                if (location.Address == cityList)
                 {
                     selectedPickupLocations = location;
                 }
@@ -59,7 +59,7 @@ namespace FaradayFE.Controllers
             
             foreach (var location in locationList)
             {
-                if (location.City == citydropoff)
+                if (location.Address == citydropoff)
                 {
                     selectedDropOffLocations = location;
                 }
@@ -72,7 +72,11 @@ namespace FaradayFE.Controllers
                     selectedCar = car;
                 }
             }
-            customer = new CustomerModel() { FirstName = name, LastName = phone, DriversLicense = email };
+            customer = new CustomerModel() { FirstName = firstname,  LastName = lastname, DriversLicense = driverlicens, Gender = gender };
+
+            CustomerId customerId = await service.Client().CreateCustomerModelAsync(customer);
+            customer.Id = customerId.Id;
+
             pickupDate = DateTime.Today.ToString();
             dropOffDate = selectedDate;
 
@@ -87,8 +91,11 @@ namespace FaradayFE.Controllers
                 DropoffDate = dropOffDate,
                 IsCancelled = isCannceled
             };
-            var id = await service.Client().CreateBookingModelAsync(bookingModel);
+            BookingId bookingId = await service.Client().CreateBookingModelAsync(bookingModel);
+            
             ViewData["bookingComplete"] = bookingModel;
+
+            return RedirectToAction("CreateBooking");
         }
 
         //private readonly ILogger<HomeController> _logger;
@@ -114,12 +121,12 @@ namespace FaradayFE.Controllers
         }
 
         private static string _selectedCancelBooking;
-        public async void getSelectedCancelBooking(string selectedCancelBooking)  // id   model   n avn 
+        public async Task<IActionResult> getSelectedCancelBooking(string selectedCancelBooking)  // id   model   n avn 
         {
             Service service = new Service();
             //Getting the whole booking 
             string[] test = selectedCancelBooking.Split(" ");
-            var selectedItemId = Convert.ToInt32(test[0]);
+            var selectedItemId = Convert.ToInt32(test[2]);
             foreach (var booking in bookingList)
             {
                 if(booking.Id == selectedItemId)
@@ -127,7 +134,8 @@ namespace FaradayFE.Controllers
                     selectedBookingToCancel = booking;
                     var requestAllBookings = await service.Client().CancelBookingModelAsync(selectedBookingToCancel);
                 }
-            }           
+            }
+            return RedirectToAction("CancelBooking");
         }
 
         public async Task<IActionResult> CancelBooking()
@@ -136,15 +144,15 @@ namespace FaradayFE.Controllers
             Service service = new Service();
             booking = new BookingModel();
             bookingList = new List<BookingModel>();
-            List<string> bookingListDTO = new List<string>();
+           // List<string> bookingListDTO = new List<string>();
 
-            using (var requestAllBookings = service.Client().GetAllBookingModels(_emptyRequest))
+            using (var requestAllBookings = service.Client().GetAllActiveBookings(_emptyRequest))
             {
                 while (await requestAllBookings.ResponseStream.MoveNext())
                 {
                     booking = requestAllBookings.ResponseStream.Current;
                     bookingList.Add(booking);
-                    bookingListDTO.Add(booking.Car.Model);
+                    //bookingListDTO.Add(booking.Car.Model);
                 }
             }
             ViewData["booking"] = bookingList;  //Sends the list of data to the view.
@@ -171,7 +179,7 @@ namespace FaradayFE.Controllers
                     locationsListDTO.Add(location.City);
                 }
             }
-            ViewData["location"] = locationsListDTO;  //Sends the list of data to the view. 
+            ViewData["location"] = locationList;  //Sends the list of data to the view. 
             return View();
         }
 

@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "Create Booking"; // title of the site.
 
-    var locationListDTO = (List<string>)ViewData["location"];  //Getting the data through the controller.
+    var locationListDTO = (List<LocationModel>)ViewData["location"];  //Getting the data through the controller.
     var bookingModel = (BookingModel)ViewData["bookingComplete"];
     
 
@@ -47,7 +47,7 @@
                     <select name="cityList">
                         @foreach (var location in locationListDTO)
                         {
-                            <option>@location</option>
+                            <option>@location.Address</option>
                             ;
                         }*
                     </select>
@@ -59,7 +59,7 @@
                     <select name="citydropoff">
                         @foreach (var location in locationListDTO)
                         {
-                            <option>@location</option>
+                            <option>@location.Address</option>
                             ;
                         }*
                     </select>
@@ -68,7 +68,7 @@
             <div class="delivery-row">
                 <div class="form-group">
                     <span class="form-label">Select delivery time</span>
-                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" required/>
+                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" required />
                 </div>
             </div>
             <div class="Availalbecars-row">
@@ -83,25 +83,33 @@
                     </select>
                 </div>
             </div>
-            <h4 class="customer-details">Customer Details</h4>
+
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="name" value="" placeholder="Full name" required/>
+                    <input type="text" name="firstname" value="" placeholder="Firstname" required />
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <input type="text" name="phone" value="" placeholder="Phone number" required/>
+                    <input type="text" name="lastname" value="" placeholder="Lastname" required />
                 </div>
             </div>
-            <div class="email-row">
+            <div class="driverlicens-row">
                 <div class="form-group">
-                    <input type="email" name="email" value="" placeholder="Email" required/>
+                    <input type="text" name="driverlicens" value="" placeholder="driverlicens" required />
+                </div>
+            </div>
+            <div class="gender-row">
+                <div class="form-group">
+                    <select name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                 </div>
             </div>
             <div class="button-row">
                 <div class="form-group">
-                    <button action="CreateBooking()" type="submit" class="button">Book car</button>
+                    <button action="selectedItem()" type="submit" class="button">Book car</button>
                 </div>
             </div>
         </form>
@@ -116,9 +124,9 @@
         document.getElementById("nametest").innerText = name;
     }
 
-    //function selectedItem() {
-    //    var selectedCarList = document.getElementById("carList");
-    //    var strUser = selectedCarList.options[selectedCarList.selectedIndex].value;
-    //    document.getElementById("nametest").innerText = strUser;
-    //}
+    function selectedItem() {
+        var selectedCarList = document.getElementById("carList");
+        var strUser = selectedCarList.options[selectedCarList.selectedIndex].value;
+        document.getElementById("nametest").innerText = strUser;
+    }
 </script>
