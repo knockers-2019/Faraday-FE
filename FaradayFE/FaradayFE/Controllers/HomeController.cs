@@ -45,6 +45,7 @@ namespace FaradayFE.Controllers
 
         //Hvis man laver en controller som tager variabler som input der stemmer overenst men ^^ name="" ^^ i cshtlm (viewet) kan man få det til helt 
         //automatisk at hente både input, selecteditems, li elementer - ja, faktisk alt, så længe der er angivet en name=""
+
         public async Task<IActionResult> getCustomerDetails(string selectedDate, string firstname, string driverlicens,  string lastname, string gender, string cityList, string citydropoff, string carList)
          {
             Service service = new Service();

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FaradayGrpcServer;
+using System.Net.Http;
 
 namespace FaradayFE.protobufferrepo
 {
@@ -15,9 +16,21 @@ namespace FaradayFE.protobufferrepo
         private Bookings.BookingsClient client;
         public Service()
         {
-            //http://80.198.94.195:5001
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var httpClientHandler = new HttpClientHandler();
+            // Return `true` to allow certificates that are untrusted/invalid
+            httpClientHandler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            var httpClient = new HttpClient(httpClientHandler);
+
+            var channel = GrpcChannel.ForAddress("https://80.198.94.195:5001",
+                new GrpcChannelOptions { HttpClient = httpClient });
+
+
+
+           // var channel = GrpcChannel.ForAddress("https://localhost:5001");
             client = new Bookings.BookingsClient(channel);
+
+
 
         }
 
