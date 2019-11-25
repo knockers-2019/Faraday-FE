@@ -7,6 +7,7 @@
 
     var locationListDTO = (List<string>)ViewData["location"];  //Getting the data through the controller.
 
+  
 
     //    void selectedMethod()
     //    {
@@ -37,19 +38,33 @@
             </ul>
         </div>
     </div>
+    @Html.ActionLink("test", "Index")
     <div class="form-container">
         @*@using (Html.BeginForm("SelectedCar", "Home", new { clubid = @Viewbag. }, FormMethod.Post, null)))
-        {*@
+            {*@
         <form action="getCustomerDetails" method="post">
-            <div class="city-row">
+            @*using the controller that scanc all the name="".*@
+            <div class="city-pcikup-row">
                 <div class="form-group">
-                    <span class="form-label">Select you pickup place</span>
-                    <select>
+                    <span class="form-label">Select your pickup place</span>
+                    <select name="cityList">
                         @foreach (var location in locationListDTO)
-                            {
-                                <option>@location</option>
-;
-                            }
+                        {
+                            <option>@location</option>
+                            ;
+                        }*
+                    </select>
+                </div>
+            </div>
+            <div class="city-dropoff-row">
+                <div class="form-group">
+                    <span class="form-label">Select your drop of place</span>
+                    <select name="citydropoff">
+                        @foreach (var location in locationListDTO)
+                        {
+                            <option>@location</option>
+                            ;
+                        }*
                     </select>
                 </div>
             </div>
@@ -59,11 +74,11 @@
                     <input type="datetime-local" name="selectedDate" id="selectedDate" value="" />
                 </div>
             </div>
-            @*<div class="button-row">
+            <div class="button-row">
                 <div class="form-group">
-                    <button  class="button">REGISTER</button>
+                    <button class="button">REGISTER</button>
                 </div>
-            </div>*@
+            </div>
 
             <div class="Availalbecars-row">
                 <div class="form-group">
@@ -72,24 +87,24 @@
                         @foreach (var place in await HomeController.GetCarModels())
                         {
                             <option value="@place.Brand">@place.Brand</option>
-;
+                            ;
                         }
                     </select>
                 </div>
             </div>
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="name" id="name" value="" placeholder="Full name" />
+                    <input type="text" name="name" value="" placeholder="Full name" />
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <input type="text" name="phone" id="phone" value="" placeholder="Phone number" />
+                    <input type="text" name="phone" value="" placeholder="Phone number" />
                 </div>
             </div>
             <div class="email-row">
                 <div class="form-group">
-                    <input type="email" name="email" id="email" value="" placeholder="Email" />
+                    <input type="email" name="email" value="" placeholder="Email" />
                 </div>
             </div>
             <div class="button-row">
@@ -109,9 +124,9 @@
         document.getElementById("nametest").innerText = name;
     }
 
-    function selectedItem() {
-        var selectedCarList = document.getElementById("carList");
-        var strUser = selectedCarList.options[selectedCarList.selectedIndex].value;
-        document.getElementById("nametest").innerText = strUser;
-    }
+    //function selectedItem() {
+    //    var selectedCarList = document.getElementById("carList");
+    //    var strUser = selectedCarList.options[selectedCarList.selectedIndex].value;
+    //    document.getElementById("nametest").innerText = strUser;
+    //}
 </script>
