@@ -11,6 +11,7 @@ using FaradayGrpcServer;
 using FaradayFE.protobufferrepo;
 using Grpc.Core;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Globalization;
 
 namespace FaradayFE.Controllers
 {
@@ -18,33 +19,133 @@ namespace FaradayFE.Controllers
     {
         private static EmptyRequest _emptyRequest = new EmptyRequest();
         //Location
-        private LocationModel location = new LocationModel();
-        private List<LocationModel> locationList = new List<LocationModel>(); //Contains all information 
-        private List<string> locationsListDTO = new List<string>();
+        private static LocationModel location = new LocationModel();
+        private static List<LocationModel> locationList = new List<LocationModel>(); //Contains all information 
+        private static List<string> locationsListDTO = new List<string>();
         //Car
         private static CarModel carModel = new CarModel();
-        private static List<CarModel> carList = new List<CarModel>();
+        private static List<CarModel> carListDB = new List<CarModel>();
         private static List<string> carsListDTO = new List<string>();
 
-        private static CustomerModel customer;
-        private static string dropofDate;
+        //Booking 
+        private static LocationModel selectedPickupLocations;    //Used for create Booking  - Information sent from view
+        private static LocationModel selectedDropOffLocations;    //Used for create Booking  - Information sent from view
+        private static CarModel selectedCar = new CarModel();                  //Used for create Booking  - Information sent from view
+        private static CustomerModel customer;                                 //Used for create Booking  - Information sent from view
+        private static string pickupDate; 
+        private static string dropOffDate;  //Used for create Booking  - Information sent from view
+        private static bool isCannceled = false;
+
+        //private readonly List<LocationModel> _locations;  //preloaded from database and stored
+        //public int SelectedLocationsId { get; set; }
+        //string citySelected;
+        //string carSelected;
 
 
-        public IActionResult getCustomerDetails(string selectedDate, string name, string phone, string email)
+        //Hvis man laver en controller som tager variabler som input der stemmer overenst men ^^ name="" ^^ i cshtlm (viewet) kan man få det til helt 
+        //automatisk at hente både input, selecteditems, li elementer - ja, faktisk alt, så længe der er angivet en name=""
+        public async void getCustomerDetails(string selectedDate, string name, string phone, string email, string cityList, string citydropoff, string carList)
         {
-            dropofDate = selectedDate;
+            Service service = new Service();
+     
+
+            //pickupLocations.City = cityList;
+            foreach (var location in locationList)
+            {
+                if(location.City == cityList)
+                {
+                    selectedPickupLocations = location;
+                }
+            }
+            //dropOffLocations.City =  "Rønne";            //Hard coded, need to modify view.
+            foreach (var location in locationList)
+            {
+                if (location.City == citydropoff)
+                {
+                    selectedDropOffLocations = location;
+                }
+            }
+            foreach (var car in carListDB)
+            {
+                if (car.Brand == carList)
+                {
+                    selectedCar = car;
+                }
+            }
             customer = new CustomerModel() { FirstName = name, LastName = phone, DriversLicense = email };
-            return Redirect("CreateBooking");
-            
+            pickupDate = DateTime.Today.ToString();
+            dropOffDate = selectedDate;
+
+
+            //{ booking.PickupLocation.Id}
+            //', '{ booking.DropoffLocation.Id}
+            //', '{ booking.Car.Id}
+            //', '{ booking.Customer.Id}
+            //', '{ booking.PickupDate}
+            //', '{ booking.DropoffDate} 
+
+            BookingModel bookingModel = new BookingModel()
+            {
+                PickupLocation = selectedPickupLocations,
+                DropoffLocation = selectedDropOffLocations,
+                Car = selectedCar,
+                Customer = customer,
+                PickupDate = pickupDate,
+                DropoffDate = dropOffDate,
+                IsCancelled = isCannceled
+            };
+
+            var id = await service.Client().CreateBookingModelAsync(bookingModel);
         }
 
-        //private readonly ILogger<HomeController> _logger;
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
+        //message BookingModel {
+        //    int32 id = 1;
+        //    LocationModel pickup_location = 2;
+        //    LocationModel dropoff_location = 3;
+        //    CarModel car = 4;
+        //    CustomerModel customer = 5;
+        //    string pickup_date = 6;
+        //    string dropoff_date = 7;
+        //    bool is_cancelled = 8;
         //}
+    }
 
-        public HomeController()
+
+
+    //public async Task<List<string>> GetSomething214123()
+    //{
+    //    DummyBackend dummyBackend = new DummyBackend();
+    //    Service service = new Service();
+
+    //    EmptyRequest emptyRequest = new EmptyRequest();
+    //    CarModel carModel = new CarModel();
+    //    List<CarModel> carList = new List<CarModel>();
+    //    List<string> carsListDTO = new List<string>();
+
+    //    //var opt = element
+    //    //CarModel strDDLValue = new Select
+    //    //foreach (var item in carList
+    //    //{
+    //    //    if (item.)
+    //    //}
+    //    //    customer 
+    //    //string dropOfDate
+    //    string dropOfDate = Request.Form["selectedDate"];
+    //    string dropOfLocation = Request.Form["selectedDate"];
+    //    bool isCannceled = false;
+    //    //pickupdate 
+    //    //    pickuplocation
+
+    //    return View();
+    //}
+
+    //private readonly ILogger<HomeController> _logger;
+    //public HomeController(ILogger<HomeController> logger)
+    //{
+    //    _logger = logger;
+    //}
+
+    public HomeController()
         {
 
         }
@@ -104,51 +205,11 @@ namespace FaradayFE.Controllers
                 while (await requestAllLocations.ResponseStream.MoveNext())
                 {
                     carModel = requestAllLocations.ResponseStream.Current;
-                    carList.Add(carModel);
+                    carListDB.Add(carModel);
                     carsListDTO.Add(carModel.Brand);
                 }
             }
-            return carList;  //Sends the list of data to the view. 
-        }
-
-         public async Task<List<string>> GetSomething214123()
-        {
-            DummyBackend dummyBackend = new DummyBackend();
-            Service service = new Service();
-
-            EmptyRequest emptyRequest = new EmptyRequest();
-            CarModel carModel = new CarModel();
-            List<CarModel> carList = new List<CarModel>();
-            List<string> carsListDTO = new List<string>();
-
-            //var opt = element
-            //CarModel strDDLValue = new Select
-            //foreach (var item in carList
-            //{
-            //    if (item.)
-            //}
-            //    customer 
-            //string dropOfDate
-            string dropOfDate = Request.Form["selectedDate"];
-            string dropOfLocation = Request.Form["selectedDate"];
-            bool isCannceled = false;
-            //pickupdate 
-            //    pickuplocation
-
-            BookingModel bookingModel = new BookingModel() { };
-
-            
-
-            using (var requestAllLocations = service.Client().GetAllCarModels(emptyRequest))
-            {
-                while (await requestAllLocations.ResponseStream.MoveNext())
-                {
-                    carModel = requestAllLocations.ResponseStream.Current;
-                    carList.Add(carModel);
-                    carsListDTO.Add(carModel.Brand);
-                }
-            }
-            return carsListDTO;  //Sends the list of data to the view. 
+            return carListDB;  //Sends the list of data to the view. 
         }
 
 
