@@ -6,8 +6,8 @@
     ViewBag.Title = "Create Booking"; // title of the site.
 
     var locationListDTO = (List<string>)ViewData["location"];  //Getting the data through the controller.
-
-  
+    var bookingModel = (BookingModel)ViewData["bookingComplete"];
+    
 
     //    void selectedMethod()
     //    {
@@ -30,7 +30,6 @@
 </head>
 <body asp-area="" asp-controller="Home" asp-action="CreateBooking2">
     <div class="log-container">
-
         <h2>Confirmed booksings:</h2>
         <div class="log">
             <ul>
@@ -38,12 +37,10 @@
             </ul>
         </div>
     </div>
-    @Html.ActionLink("test", "Index")
     <div class="form-container">
         @*@using (Html.BeginForm("SelectedCar", "Home", new { clubid = @Viewbag. }, FormMethod.Post, null)))
             {*@
         <form action="getCustomerDetails" method="post">
-            @*using the controller that scanc all the name="".*@
             <div class="city-pcikup-row">
                 <div class="form-group">
                     <span class="form-label">Select your pickup place</span>
@@ -71,15 +68,9 @@
             <div class="delivery-row">
                 <div class="form-group">
                     <span class="form-label">Select delivery time</span>
-                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" />
+                    <input type="datetime-local" name="selectedDate" id="selectedDate" value="" required/>
                 </div>
             </div>
-            <div class="button-row">
-                <div class="form-group">
-                    <button class="button">REGISTER</button>
-                </div>
-            </div>
-
             <div class="Availalbecars-row">
                 <div class="form-group">
                     <span class="form-label">Select a Car</span>
@@ -92,24 +83,25 @@
                     </select>
                 </div>
             </div>
+            <h4 class="customer-details">Customer Details</h4>
             <div class="name-row">
                 <div class="form-group">
-                    <input type="text" name="name" value="" placeholder="Full name" />
+                    <input type="text" name="name" value="" placeholder="Full name" required/>
                 </div>
             </div>
             <div class="phone-row">
                 <div class="form-group">
-                    <input type="text" name="phone" value="" placeholder="Phone number" />
+                    <input type="text" name="phone" value="" placeholder="Phone number" required/>
                 </div>
             </div>
             <div class="email-row">
                 <div class="form-group">
-                    <input type="email" name="email" value="" placeholder="Email" />
+                    <input type="email" name="email" value="" placeholder="Email" required/>
                 </div>
             </div>
             <div class="button-row">
                 <div class="form-group">
-                    <button onclick="selectedItem()" type="submit" class="button">Book car</button>
+                    <button action="CreateBooking()" type="submit" class="button">Book car</button>
                 </div>
             </div>
         </form>

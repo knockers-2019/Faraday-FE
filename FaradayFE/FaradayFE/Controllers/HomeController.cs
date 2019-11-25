@@ -88,6 +88,7 @@ namespace FaradayFE.Controllers
                 IsCancelled = isCannceled
             };
             var id = await service.Client().CreateBookingModelAsync(bookingModel);
+            ViewData["bookingComplete"] = bookingModel;
         }
 
         //private readonly ILogger<HomeController> _logger;
