@@ -31,8 +31,6 @@ You will have different options within the navigations bar, which will give you 
 <h2>Installation</h2>
 We have hosted the client and server, which for you means that you just have to click this [Link](https://faradayproject1754374552.azurewebsites.net/Home) to get started. 
 
-
-<h2>Installation</h2>
 If you want to make any changes to the frontend it, you do it by:
 1. Cloning the whole project to your computer
 2. Make the desired changes
