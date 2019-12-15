@@ -12,7 +12,6 @@ namespace FaradayFE.protobufferrepo
 {
     public class Service
     {
-
         private Bookings.BookingsClient client;
         public Service()
         {
@@ -25,18 +24,9 @@ namespace FaradayFE.protobufferrepo
             var channel = GrpcChannel.ForAddress("https://80.198.94.195:5001",
                 new GrpcChannelOptions { HttpClient = httpClient });
 
-
-
-           // var channel = GrpcChannel.ForAddress("https://localhost:5001");
             client = new Bookings.BookingsClient(channel);
-
-
-
         }
 
-        /// <summary>
-        /// Property to use the Proto methods. 
-        /// </summary>
         public Bookings.BookingsClient Client()
         {
             return client;

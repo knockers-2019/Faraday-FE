@@ -18,7 +18,7 @@
         <span onclick="newElement()" class="searchBtn">Search</span>
     </div>
     <form action="getSelectedCancelBooking" method="post">
-        <select name="selectedCancelBooking">
+        <select name="selectedCancelBooking" id="selectedCancel">
             @foreach (var booking in bookingListDTO)
             {
                 <option>Booking ref. @booking.Id  car rented: @booking.Car.Brand by: @booking.Customer.FirstName pickedup at: @booking.PickupLocation.City the: @booking.PickupDate</option>
@@ -31,7 +31,7 @@
                 <li>@booking.Car.Price  @booking.Customer.FirstName</li>
             }
         </ul>*@
-    <button type="submit" class="button">Cancel</button>
+    <button type="submit" id="submitButton" class="button">Cancel</button>
     </form>
 
 

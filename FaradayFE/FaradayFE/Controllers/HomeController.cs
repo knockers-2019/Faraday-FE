@@ -167,7 +167,6 @@ namespace FaradayFE.Controllers
             return View();
         }
 
-
         public async Task<IActionResult> CreateBooking()
         {
             Service service = new Service();
